@@ -2,7 +2,7 @@ sudo: required #need super user permission
 services:
   - docker
 before_install:
-  - docker build -t kridsada/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t kridsada/react-test -f ./client/Dockerfile.dev .
 script:
   - docker run -e CI=true kridsada/react-test npm run test
 after_success:
