@@ -2,14 +2,14 @@ sudo: required #need super user permission
 services:
   - docker
 before_install:
-  - docker build -t kridsada/react-test -f ./client/Dockerfile.dev .
+  - docker build -t kridsada/react-test -f ./client/Dockerfile.dev ./client
 script:
   - docker run -e CI=true kridsada/react-test npm run test
 after_success:
-  - docker build -t kridsada/multi-client ./client .
-  - docker build -t kridsada/multi-nginx ./nginx .
-  - docker build -t kridsada/multi-server ./server .
-  - docker build -t kridsada/multi-worker ./worker .
+  - docker build -t kridsada/multi-client ./client
+  - docker build -t kridsada/multi-nginx ./nginx
+  - docker build -t kridsada/multi-server ./server
+  - docker build -t kridsada/multi-worker ./worker
     echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_EMAIL" --password-stdin
   - docker push kridsada/multi-client
   - docker push kridsada/multi-nginx
