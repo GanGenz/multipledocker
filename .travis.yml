@@ -10,9 +10,7 @@ after_success:
   - docker build -t kridsada/multi-nginx ./nginx .
   - docker build -t kridsada/multi-server ./server .
   - docker build -t kridsada/multi-worker ./worker .
-
-  echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_EMAIL" --password-stdin
-
+    echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_EMAIL" --password-stdin
   - docker push kridsada/multi-client
   - docker push kridsada/multi-nginx
   - docker push kridsada/multi-server
